@@ -5,6 +5,6 @@ Here you get insights to the problems and their solutions if you seek them. I al
 
 
 
-Core Updates to Soltions: 
+Core Updates to Solutions: 
 
 Update 1 (18-12-2025): I've simplified the solutions further bringing them closer to a very simple version than assuming the reader to be a pro. 
