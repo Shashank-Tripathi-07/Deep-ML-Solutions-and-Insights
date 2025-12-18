@@ -7,4 +7,4 @@ Here you get insights to the problems and their solutions if you seek them. I al
 
 Core Updates to Solutions: 
 
-Update 1 (18-12-2025): I've simplified the solutions further bringing them closer to a very simple version than assuming the reader to be a pro. 
+Update 1 (18-12-2025): Changed the default user profile assumption to allow deeper insights and more comprehensive solutions. 
