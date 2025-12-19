@@ -47,33 +47,24 @@ The CSR format is widely used in high-performance computing applications such as
 Insights: 
 
 This method is great, especially when we're working on large matrices and calculations and have less usable memory [RAM] 
-I've used a simple method of initialization, loops and result counts. check the comment in the code and you'll know. 
+Check the solution code for a smarter solution 
 """
 
 #SOLUTION: 
 
-import numpy as np
+A = np.asarray(dense_matrix)
 
-def compressed_row_sparse_matrix(dense_matrix):
-	"""
-	Convert a dense matrix to its Compressed Row Sparse (CSR) representation.
+    # 1. Find non-zero positions
+    row_idx, col_idx = np.nonzero(A)
 
-	:param dense_matrix: 2D list representing a dense matrix
-	:return: A tuple containing (values array, column indices array, row pointer array)
-	"""
-    values = []             #initializing required things to zero. 
-    col_idx = []
-    row_ptr = [0]
+    # 2. Extract values
+    values = A[row_idx, col_idx]
 
-    count = 0  # number of non-zero elements seen so far in the input.
+    # 3. Build row pointer
+    row_counts = np.bincount(row_idx, minlength=A.shape[0])
+    row_ptr = np.concatenate(([0], np.cumsum(row_counts)))
 
-    for row in dense_matrix:
-        for j, val in enumerate(row):           
-            if val != 0:
-                values.append(val)
-                col_idx.append(j)
-                count += 1
-        row_ptr.append(count)
+    return values.tolist(), col_idx.tolist(), row_ptr.tolist()
 
-    return values, col_idx, row_ptr
-
+# I can solve it throught the traditional DSA O(n^2) approach but I've taked this approach
+# with numpy as the calculations are in C and hence are faster and better. 
