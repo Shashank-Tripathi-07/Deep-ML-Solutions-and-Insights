@@ -40,25 +40,31 @@ import numpy as np
 
 def k_means_clustering(points: list[tuple[float, float]], k: int, initial_centroids: list[tuple[float, float]], max_iterations: int) -> list[tuple[float, float]]:
 	
-    point = np.array(points, dtype=float)
+    points_arr = np.array(points, dtype=float)
     initial_centroid = np.array(initial_centroids, dtype=float)
     
     for _ in range(max_iterations): 
         clusters = [[] for _ in range(k)]
 
-        for point in points: 
+        for point in points_arr: 
             #compute euclidean distance squared
             distances = np.sum((initial_centroid - point)**2,axis=1)
             closest_centroid = np.argmin(distances)
             clusters[closest_centroid].append(point)
 
-        #update step
+        # Update step
         new_centroids = initial_centroid.copy()
-
         for i in range(k):
             if clusters[i]:
-                new_centroids[i]=np.mean(clusters[i],axis=0)
-  
+                new_centroids[i] = np.mean(clusters[i], axis=0)
+
+        # Convergence check (AFTER update)
+        if np.allclose(initial_centroid, new_centroids):
+            centroids = new_centroids
+            break
+            
         final_centroids = new_centroids 
+
+
 
 	return [(np.round(final_centroids, 4)).tolist()]
