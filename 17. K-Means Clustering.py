@@ -42,7 +42,6 @@ def k_means_clustering(points: list[tuple[float, float]], k: int, initial_centro
 	
     point = np.array(points, dtype=float)
     initial_centroid = np.array(initial_centroids, dtype=float)
-    n_points, dim = point.shape
     
     for _ in range(max_iterations): 
         clusters = [[] for _ in range(k)]
